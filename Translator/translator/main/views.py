@@ -46,18 +46,21 @@ def translator(request):
         if text_serializer.is_valid():   
             textt = request.data.get("title")
             language = settings.LANGUAGES
-            dct = dict((x, y) for x, y in settings.LANGUAGES)
+            # dct = dict((x, y) for x, y in language)
             dict= {}
+            all_lang = []
             Qs = Profile.objects.filter(title = textt) 
             if Qs.exists() :
                 content = {"message" :"Data Already Available",}
                 return Response(content, status=status.HTTP_201_CREATED)
             else:
-                for language in dct.keys():
-                    translator= Translator(to_lang = language)
+                for lang in language:
+                    translator= Translator(to_lang = lang[0])
                     translation = translator.translate(textt)                
-                    dict[language] = translation
-                p = Profile(title=textt, preferences = dict)
+                    dict[lang[0]] = translation
+                    all_lang.append(lang[0])
+                
+                p = Profile(title=textt,language ="".join(all_lang) ,preferences = dict)
                 p.save()
             jsondata = [{"title" : textt,
                         "translation" : dict}]

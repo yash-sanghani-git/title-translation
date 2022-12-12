@@ -11,7 +11,7 @@ Replace your database connnections with the existing default connection from set
 5. Run Migrations (python3 manage.py migrate)
 6. Create Superuser (python3 manage.py createsuperuser)
 7. Move to the right directory (translator/translator)
-8. Run Server (python3 manage.p runserver)
+8. Run Server (python3 manage.py runserver)
 
 -- Server is ready to use on localhost:8000
 
