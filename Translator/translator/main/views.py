@@ -60,7 +60,7 @@ def translator(request):
                     dict[lang[0]] = translation
                     all_lang.append(lang[0])
                 
-                p = Profile(title=textt,language ="".join(all_lang) ,preferences = dict)
+                p = Profile(title=textt,language =",".join(all_lang) ,preferences = dict)
                 p.save()
             jsondata = [{"title" : textt,
                         "translation" : dict}]
